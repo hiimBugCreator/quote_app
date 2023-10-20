@@ -1,9 +1,9 @@
 class Quote {
-  Quote({
-    required this.quote,
-    required this.author,
-    required this.category,
-  });
+  Quote(String quote, String author, String category) {
+    this.quote = _capitalize(quote);
+    this.author = _capitalize(author);
+    this.category = _capitalize(category);
+  }
 
   late final String quote;
   late final String author;
@@ -21,12 +21,12 @@ class Quote {
       str.isNotEmpty ? str[0].toUpperCase() + str.substring(1) : str;
 
   factory Quote.fromMap(Map<String, dynamic>? map) {
-    if (map == null) return Quote(quote: '', author: '', category: '');
+    if (map == null) return Quote('', '', '');
 
     return Quote(
-      quote: map['quote'],
-      author: map['author'],
-      category: map['category'],
+      map['quote'],
+      map['author'],
+      map['category'],
     );
   }
 

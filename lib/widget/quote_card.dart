@@ -31,9 +31,14 @@ class _QuoteCardState extends State<QuoteCard> {
           height: height * 0.7,
           decoration: const BoxDecoration(color: Colors.white),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.quote?.category ?? ""),
+              Expanded(
+                child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      widget.quote?.category ?? "",
+                    )),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -44,10 +49,14 @@ class _QuoteCardState extends State<QuoteCard> {
                       widget.quote?.quote ?? "",
                       textAlign: TextAlign.center,
                       maxLines: 4,
-                      style: TextStyle(fontSize: 50),
+                      style: const TextStyle(fontSize: 50),
                     )),
               ),
-              Text(widget.quote?.author ?? ""),
+              Expanded(
+                child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(widget.quote?.author ?? "")),
+              ),
             ],
           ),
         ),
