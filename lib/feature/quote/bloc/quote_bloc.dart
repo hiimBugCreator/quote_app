@@ -14,11 +14,25 @@ class QuoteBloc extends Bloc<QuoteEvent, QuoteState> {
   QuoteBloc() : super(QuoteInitial()) {
     on<QuoteInitialFetchEvent>(quoteFetchEvent);
     on<QuoteRefreshFetchEvent>(quoteFetchEvent);
+    on<QuoteFetchMoreEvent>(quoteFetchMoreEvent);
   }
 
   FutureOr<void> quoteFetchEvent(
       QuoteFetchEvent event, Emitter<QuoteState> emit) async {
     emit(QuoteLoading());
+    try {
+      var response = await QuoteRepo.fetchQuote();
+      emit(QuoteFetchingSuccessfulState(quotes: response));
+    } on DioException catch (e) {
+      print(e.error);
+      print(e.message);
+      emit(QuoteError());
+    }
+  }
+
+  FutureOr<void> quoteFetchMoreEvent(
+      QuoteFetchEvent event, Emitter<QuoteState> emit) async {
+    emit(QuoteLoading(onBackground: true));
     try {
       var response = await QuoteRepo.fetchQuote();
       emit(QuoteFetchingSuccessfulState(quotes: response));

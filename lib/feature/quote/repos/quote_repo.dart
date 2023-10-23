@@ -4,7 +4,7 @@ import 'package:quote_app/models/quote.dart';
 class QuoteRepo {
 
   static Future<List<Quote>> fetchQuote() async {
-    var resp = await BaseRestfulAPI().httpGet("quotes?category=");
+    var resp = await BaseRestfulAPI().httpGet("quotes?category=&limit=10");
     List<Quote> quotes = [];
     if (resp.statusCode == 200) {
       if (resp.statusCode == 200) {

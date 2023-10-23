@@ -8,3 +8,5 @@ abstract class QuoteFetchEvent extends QuoteEvent {}
 class QuoteInitialFetchEvent extends QuoteFetchEvent {}
 
 class QuoteRefreshFetchEvent extends QuoteFetchEvent {}
+
+class QuoteFetchMoreEvent extends QuoteFetchEvent {}

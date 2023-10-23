@@ -9,7 +9,9 @@ class QuoteInitial extends QuoteState {
   QuoteInitial();
 }
 
-class QuoteLoading extends QuoteState {}
+class QuoteLoading extends QuoteState {
+  final bool onBackground;
+  QuoteLoading({this.onBackground = false});}
 
 class QuoteError extends QuoteState {}
 
