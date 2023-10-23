@@ -1,2 +1,2 @@
-String homeRoute = "/";
-String quoteRoute = "quote";
+// String homeRoute = "/";
+String quoteRoute = "/";

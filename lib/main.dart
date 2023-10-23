@@ -24,13 +24,12 @@ class MyApp extends StatelessWidget {
     removeDuplicateHistory: true,
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        homeRoute: (context, state, data) => BeamPage(
-            child: HomePage(), title: 'Home', key: ValueKey(homeRoute)),
+        // homeRoute: (context, state, data) => BeamPage(
+        //     child: const HomePage(), title: 'Home', key: ValueKey(homeRoute)),
         quoteRoute: (context, state, data) {
           return BeamPage(
               child: const QuotePage(),
               title: 'Quote',
-              popToNamed: homeRoute,
               key: ValueKey(quoteRoute));
         },
         // '/books/:bookId': (context, state, data) {
@@ -61,7 +60,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      title: 'VCL',
       routeInformationParser: BeamerParser(),
       routerDelegate: routerDelegate,
     );
