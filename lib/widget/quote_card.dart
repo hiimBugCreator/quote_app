@@ -9,6 +9,8 @@ class QuoteCard extends StatefulWidget {
 
   final Quote? quote;
 
+  get prepareToSave => quote?.toMap();
+
   @override
   State<QuoteCard> createState() => _QuoteCardState();
 }

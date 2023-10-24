@@ -1,13 +1,18 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:quote_app/feature/quote/bloc/quote_bloc.dart';
 import 'package:quote_app/resources/routes_name.dart';
 
-import 'feature/home/ui/home.dart';
 import 'feature/quote/ui/quote.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocumentDirectory = await getApplicationDocumentsDirectory();
+  await Hive.initFlutter(appDocumentDirectory.path);
+  await Hive.openBox('favorite_quote');
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<QuoteBloc>(

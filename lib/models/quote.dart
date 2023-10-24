@@ -20,7 +20,7 @@ class Quote {
   String _capitalize(String str) =>
       str.isNotEmpty ? str[0].toUpperCase() + str.substring(1) : str;
 
-  factory Quote.fromMap(Map<String, dynamic>? map) {
+  factory Quote.fromMap(Map<dynamic, dynamic>? map) {
     if (map == null) return Quote('', '', '');
 
     return Quote(
