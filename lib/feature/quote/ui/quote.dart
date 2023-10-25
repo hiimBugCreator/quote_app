@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:hive/hive.dart';
 import 'package:quote_app/feature/quote/bloc/quote_bloc.dart';
+import 'package:quote_app/local_auth.dart';
 import 'package:quote_app/widget/quote_button.dart';
 import 'package:quote_app/widget/quote_card.dart';
 
@@ -84,7 +85,12 @@ class _QuotePageState extends State<QuotePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    TextButton(onPressed: (){}, child: const Text('Go to favorite',)),
+                    TextButton(onPressed: () async {
+                      var hasAuthen = await LocalAuth.isVisibleFeature();
+                      if (hasAuthen) {
+                        var isAuthen = await LocalAuth.authenticate();
+                      }
+                    }, child: const Text('Go to favorite',)),
                   ],
                 ),
               ),
