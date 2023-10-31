@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:hive/hive.dart';
 import 'package:quote_app/feature/quote/bloc/quote_bloc.dart';
 import 'package:quote_app/local_auth.dart';
+import 'package:quote_app/resources/routes_name.dart';
 import 'package:quote_app/widget/quote_button.dart';
 import 'package:quote_app/widget/quote_card.dart';
 
@@ -22,6 +24,7 @@ class _QuotePageState extends State<QuotePage> {
   late var size = MediaQuery.of(context).size;
   late var height = size.height;
   late var width = size.width;
+  var isAuthen = true;
   List<QuoteCard> cards = [];
   var cardIndex = 0;
 
@@ -85,20 +88,25 @@ class _QuotePageState extends State<QuotePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    TextButton(onPressed: () async {
-                      var hasAuthen = await LocalAuth.isVisibleFeature();
-                      if (hasAuthen) {
-                        var isAuthen = await LocalAuth.authenticate();
-                      }
-                    }, child: const Text('Go to favorite',)),
+                    TextButton(
+                        onPressed: () async {
+                          var hasAuthen = await LocalAuth.isVisibleFeature();
+                          if (hasAuthen) {
+                            isAuthen = await LocalAuth.authenticate();
+                            if (isAuthen && context.mounted) {
+                              context.beamToNamed(favorQuoteRoute);
+                            }
+                          }
+                        },
+                        child: const Text(
+                          'Go to favorite',
+                        )),
                   ],
                 ),
               ),
               BlocConsumer<QuoteBloc, QuoteState>(
-                listenWhen: (previous, current) =>
-                    current is QuoteActionState,
-                buildWhen: (previous, current) =>
-                    current is! QuoteActionState,
+                listenWhen: (previous, current) => current is QuoteActionState,
+                buildWhen: (previous, current) => current is! QuoteActionState,
                 listener: (context, state) {
                   if (state is QuoteFetchingSuccessfulState) {}
                 },

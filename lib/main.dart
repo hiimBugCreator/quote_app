@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:quote_app/feature/quote/bloc/quote_bloc.dart';
 import 'package:quote_app/resources/routes_name.dart';
 
+import 'feature/favor_quote/ui/favor_quote.dart';
 import 'feature/quote/ui/quote.dart';
 
 Future<void> main() async {
@@ -29,8 +30,10 @@ class MyApp extends StatelessWidget {
     removeDuplicateHistory: true,
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        // homeRoute: (context, state, data) => BeamPage(
-        //     child: const HomePage(), title: 'Home', key: ValueKey(homeRoute)),
+        favorQuoteRoute: (context, state, data) => BeamPage(
+            child: const HomePage(),
+            title: 'Favorite',
+            key: ValueKey(favorQuoteRoute)),
         quoteRoute: (context, state, data) {
           return BeamPage(
               child: const QuotePage(),

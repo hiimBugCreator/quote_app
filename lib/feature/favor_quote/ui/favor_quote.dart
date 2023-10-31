@@ -19,7 +19,7 @@ class _MyHomePageState extends State<HomePage> {
           onPressed: () {
             context.beamToNamed(quoteRoute);
           },
-          child: const Text("Quote"),
+          child: const Text("Back"),
         ),
       ),
     );

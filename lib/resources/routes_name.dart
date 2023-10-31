@@ -1,2 +1,2 @@
-// String homeRoute = "/";
 String quoteRoute = "/";
+String favorQuoteRoute = "/favorite";
